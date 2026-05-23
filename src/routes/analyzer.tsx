@@ -2,13 +2,23 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ScanningScreen, DigitalAnalyzerResults } from "@/components/site/DigitalAnalyzer";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export const Route = createFileRoute("/analyzer")({
   head: () => ({
     meta: [
       { title: "AI Digital Presence Analyzer — PINFUEL" },
-      { name: "description", content: "Run a full AI-powered scan of your digital presence. Get brand identity scores, attention retention analysis, and critical growth insights." },
+      {
+        name: "description",
+        content:
+          "Run a full AI-powered scan of your digital presence. Get brand identity scores, attention retention analysis, and critical growth insights.",
+      },
     ],
   }),
   component: AnalyzerPage,
@@ -85,7 +95,10 @@ function AnalyzerPage() {
     const interval = setInterval(() => {
       current += 1;
       setProgress(current);
-      const msgIdx = Math.min(Math.floor(current / (100 / SCAN_MESSAGES.length)), SCAN_MESSAGES.length - 1);
+      const msgIdx = Math.min(
+        Math.floor(current / (100 / SCAN_MESSAGES.length)),
+        SCAN_MESSAGES.length - 1,
+      );
       setScanText(SCAN_MESSAGES[msgIdx]);
       if (current >= 100) {
         clearInterval(interval);
@@ -110,7 +123,10 @@ function AnalyzerPage() {
       <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
       <motion.div
         className="absolute inset-0 pointer-events-none"
-        style={{ background: "radial-gradient(ellipse 80% 60% at 50% 50%, oklch(0.78 0.14 300 / 0.15), transparent 70%)" }}
+        style={{
+          background:
+            "radial-gradient(ellipse 80% 60% at 50% 50%, oklch(0.78 0.14 300 / 0.15), transparent 70%)",
+        }}
         animate={{ opacity: step === "scanning" ? [0.6, 1, 0.6] : 0.8 }}
         transition={{ duration: 2, repeat: Infinity }}
       />
@@ -132,7 +148,6 @@ function AnalyzerPage() {
 
       <div className="relative z-10 w-full max-w-3xl">
         <AnimatePresence mode="wait">
-
           {/* INPUT STEP */}
           {step === "input" && (
             <motion.div
@@ -157,7 +172,10 @@ function AnalyzerPage() {
                     animate={{ scale: [1, 1.5, 1], opacity: [1, 0.4, 1] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
                   />
-                  <span className="text-[9px] font-mono uppercase tracking-widest" style={{ color: "oklch(0.78 0.14 300)" }}>
+                  <span
+                    className="text-[9px] font-mono uppercase tracking-widest"
+                    style={{ color: "oklch(0.78 0.14 300)" }}
+                  >
                     Core Feature — Intelligence Analyzer
                   </span>
                 </div>
@@ -165,14 +183,17 @@ function AnalyzerPage() {
                   Digital Presence{" "}
                   <span
                     className="text-transparent bg-clip-text"
-                    style={{ backgroundImage: "linear-gradient(90deg, oklch(0.78 0.14 300), #fff 60%, oklch(0.78 0.14 300 / 0.15))" }}
+                    style={{
+                      backgroundImage:
+                        "linear-gradient(90deg, oklch(0.78 0.14 300), #fff 60%, oklch(0.78 0.14 300 / 0.15))",
+                    }}
                   >
                     Analyzer
                   </span>
                 </h1>
                 <p className="font-mono text-sm text-subtle max-w-lg mx-auto">
-                  Submit your brand parameters. Our AI intelligence system will scan your digital presence
-                  and generate a comprehensive architecture report.
+                  Submit your brand parameters. Our AI intelligence system will scan your digital
+                  presence and generate a comprehensive architecture report.
                 </p>
               </div>
 
@@ -182,7 +203,8 @@ function AnalyzerPage() {
                 style={{
                   borderColor: "oklch(0.78 0.14 300 / 0.15)",
                   background: "oklch(0.78 0.14 300 / 0.15)",
-                  boxShadow: "0 0 60px oklch(0 0 0 / 0.8), inset 0 0 40px oklch(0.78 0.14 300 / 0.15)",
+                  boxShadow:
+                    "0 0 60px oklch(0 0 0 / 0.8), inset 0 0 40px oklch(0.78 0.14 300 / 0.15)",
                 }}
               >
                 <form onSubmit={handleAnalyze} className="space-y-5">
@@ -190,8 +212,19 @@ function AnalyzerPage() {
                     <InputField id="brand-name" label="Brand Name" required autoFocus />
                     <InputField id="industry" label="Industry / Niche" required />
                   </div>
-                  <InputField id="instagram" label="Instagram Handle" placeholder="@yourbrand" required />
-                  <InputField id="website" label="Website URL" type="url" placeholder="https://" required />
+                  <InputField
+                    id="instagram"
+                    label="Instagram Handle"
+                    placeholder="@yourbrand"
+                    required
+                  />
+                  <InputField
+                    id="website"
+                    label="Website URL"
+                    type="url"
+                    placeholder="https://"
+                    required
+                  />
 
                   <div className="pt-4">
                     <button
@@ -222,11 +255,15 @@ function AnalyzerPage() {
 
           {/* RESULTS STEP */}
           {step === "results" && (
-            <motion.div key="results" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+            <motion.div
+              key="results"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+            >
               <DigitalAnalyzerResults onReset={handleReset} />
             </motion.div>
           )}
-
         </AnimatePresence>
       </div>
     </div>

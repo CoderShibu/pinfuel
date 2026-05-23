@@ -79,7 +79,11 @@ export function HeroVisualization() {
       className="relative w-full aspect-square max-w-[480px] mx-auto select-none"
     >
       {/* SVG connection lines */}
-      <svg className="absolute inset-0 w-full h-full pointer-events-none z-0" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <svg
+        className="absolute inset-0 w-full h-full pointer-events-none z-0"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+      >
         {linePairs.map(([i, j]) => {
           const a = getNodePos(nodes[i]);
           const b = getNodePos(nodes[j]);
@@ -90,12 +94,19 @@ export function HeroVisualization() {
           return (
             <motion.line
               key={`${i}-${j}`}
-              x1={a.x} y1={a.y} x2={b.x} y2={b.y}
+              x1={a.x}
+              y1={a.y}
+              x2={b.x}
+              y2={b.y}
               stroke="oklch(0.78 0.14 300)"
               strokeWidth="0.4"
               strokeOpacity={opacity}
               animate={{ strokeOpacity: [opacity * 0.3, opacity, opacity * 0.3] }}
-              transition={{ duration: 2 + Math.random(), repeat: Infinity, delay: Math.random() * 2 }}
+              transition={{
+                duration: 2 + Math.random(),
+                repeat: Infinity,
+                delay: Math.random() * 2,
+              }}
             />
           );
         })}
@@ -119,7 +130,8 @@ export function HeroVisualization() {
       <motion.div
         className="absolute inset-0 rounded-full origin-center"
         style={{
-          background: "conic-gradient(from 0deg, transparent 0deg, transparent 270deg, oklch(0.78 0.14 300 / 0.15) 360deg)",
+          background:
+            "conic-gradient(from 0deg, transparent 0deg, transparent 270deg, oklch(0.78 0.14 300 / 0.15) 360deg)",
         }}
         animate={{ rotate: 360 }}
         transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
@@ -132,7 +144,8 @@ export function HeroVisualization() {
           style={{
             background: "oklch(0.78 0.14 300)",
             border: "1px solid oklch(0.78 0.14 300 / 0.15)",
-            boxShadow: "0 0 30px oklch(0.78 0.14 300 / 0.15), inset 0 0 15px oklch(0.78 0.14 300 / 0.15)",
+            boxShadow:
+              "0 0 30px oklch(0.78 0.14 300 / 0.15), inset 0 0 15px oklch(0.78 0.14 300 / 0.15)",
           }}
         >
           <motion.div
@@ -200,7 +213,12 @@ export function HeroVisualization() {
           key={m.label}
           className={`absolute ${m.pos} z-20`}
           animate={{ y: [0, -6, 0] }}
-          transition={{ duration: 4 + m.delay, repeat: Infinity, ease: "easeInOut", delay: m.delay }}
+          transition={{
+            duration: 4 + m.delay,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: m.delay,
+          }}
         >
           <div
             className="px-3 py-1.5 rounded-md font-mono text-xs whitespace-nowrap backdrop-blur-md"

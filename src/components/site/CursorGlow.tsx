@@ -46,7 +46,8 @@ export function CursorGlow() {
         aria-hidden
         className="pointer-events-none fixed top-0 left-0 w-[500px] h-[500px] rounded-full -translate-x-1/2 -translate-y-1/2 z-[3] hidden md:block"
         style={{
-          background: "radial-gradient(circle, oklch(from var(--color-accent) l c h / 0.15) 0%, transparent 65%)",
+          background:
+            "radial-gradient(circle, oklch(from var(--color-accent) l c h / 0.15) 0%, transparent 65%)",
         }}
       />
       {/* Sharp dot — snaps to cursor directly */}

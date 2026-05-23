@@ -1,17 +1,15 @@
 import { useCallback, useEffect, useState } from "react";
-import ParticlesPkg from "react-tsparticles";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
-
-// Handle CJS/ESM interop for react-tsparticles
-const Particles = (ParticlesPkg as any).Particles || (ParticlesPkg as any).default || ParticlesPkg;
 
 export function ParticleBackground() {
   const [mounted, setMounted] = useState(false);
-  
+
   useEffect(() => {
     setMounted(true);
   }, []);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const particlesInit = useCallback(async (engine: any) => {
     // Load the slim version of tsparticles which includes basic features
     await loadSlim(engine);
@@ -38,9 +36,10 @@ export function ParticleBackground() {
               mode: "repulse",
             },
             resize: {
-                enable: true,
-                delay: 0.5,
-            } as any
+              enable: true,
+              delay: 0.5,
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            } as any,
           },
           modes: {
             repulse: {
@@ -81,11 +80,11 @@ export function ParticleBackground() {
           opacity: {
             value: 0.4,
             animation: {
-                enable: true,
-                speed: 1,
-                minimumValue: 0.1,
-                sync: false
-            }
+              enable: true,
+              speed: 1,
+              minimumValue: 0.1,
+              sync: false,
+            },
           },
           shape: {
             type: "circle",

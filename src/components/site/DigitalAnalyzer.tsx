@@ -9,15 +9,33 @@ interface Score {
 }
 
 const SCORES: Score[] = [
-  { label: "Brand Identity Score", value: 42, color: "#ef4444", insight: "Your brand lacks visual memorability and consistent identity signals." },
-  { label: "Attention Retention", value: 68, color: "#eab308", insight: "High posting frequency but weak emotional positioning reduces retention." },
-  { label: "Culture Relevance", value: 89, color: "#22c55e", insight: "Strong cultural resonance detected — excellent native content alignment." },
-  { label: "Audience Intelligence", value: 57, color: "#3b82f6", insight: "Audience segmentation is broad. Deeper niche targeting recommended." },
+  {
+    label: "Brand Identity Score",
+    value: 42,
+    color: "#ef4444",
+    insight: "Your brand lacks visual memorability and consistent identity signals.",
+  },
+  {
+    label: "Attention Retention",
+    value: 68,
+    color: "#eab308",
+    insight: "High posting frequency but weak emotional positioning reduces retention.",
+  },
+  {
+    label: "Culture Relevance",
+    value: 89,
+    color: "#22c55e",
+    insight: "Strong cultural resonance detected — excellent native content alignment.",
+  },
+  {
+    label: "Audience Intelligence",
+    value: 57,
+    color: "#3b82f6",
+    insight: "Audience segmentation is broad. Deeper niche targeting recommended.",
+  },
 ];
 
-const RADAR_AXES = [
-  "Identity", "Retention", "Culture", "Reach", "Engagement", "Conversion"
-];
+const RADAR_AXES = ["Identity", "Retention", "Culture", "Reach", "Engagement", "Conversion"];
 
 function RadarChart({ scores }: { scores: number[] }) {
   const size = 180;
@@ -62,8 +80,10 @@ function RadarChart({ scores }: { scores: number[] }) {
         return (
           <line
             key={i}
-            x1={cx} y1={cy}
-            x2={outer.x} y2={outer.y}
+            x1={cx}
+            y1={cy}
+            x2={outer.x}
+            y2={outer.y}
             stroke="oklch(0.78 0.14 300 / 0.15)"
             strokeWidth="1"
           />
@@ -85,7 +105,9 @@ function RadarChart({ scores }: { scores: number[] }) {
       {dataPoints.map((p, i) => (
         <motion.circle
           key={i}
-          cx={p.x} cy={p.y} r={3}
+          cx={p.x}
+          cy={p.y}
+          r={3}
           fill="oklch(0.78 0.14 300)"
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -99,7 +121,8 @@ function RadarChart({ scores }: { scores: number[] }) {
         return (
           <text
             key={i}
-            x={lp.x} y={lp.y}
+            x={lp.x}
+            y={lp.y}
             textAnchor="middle"
             dominantBaseline="middle"
             fill="oklch(0.78 0.14 300)"
@@ -122,10 +145,17 @@ function ScoreBar({ score, index }: { score: Score; index: number }) {
       transition={{ delay: index * 0.12 }}
     >
       <div className="flex justify-between items-center mb-1.5">
-        <span className="text-[10px] font-mono uppercase tracking-widest text-subtle">{score.label}</span>
-        <span className="font-mono text-sm font-bold" style={{ color: score.color }}>{score.value}/100</span>
+        <span className="text-[10px] font-mono uppercase tracking-widest text-subtle">
+          {score.label}
+        </span>
+        <span className="font-mono text-sm font-bold" style={{ color: score.color }}>
+          {score.value}/100
+        </span>
       </div>
-      <div className="h-1 rounded-full overflow-hidden mb-1" style={{ background: "oklch(0.78 0.14 300 / 0.15)" }}>
+      <div
+        className="h-1 rounded-full overflow-hidden mb-1"
+        style={{ background: "oklch(0.78 0.14 300 / 0.15)" }}
+      >
         <motion.div
           className="h-full rounded-full"
           style={{ backgroundColor: score.color }}
@@ -162,7 +192,9 @@ export function DigitalAnalyzerResults({ onReset }: DigitalAnalyzerResultsProps)
             animate={{ scale: [1, 1.4, 1], opacity: [1, 0.5, 1] }}
             transition={{ duration: 1.5, repeat: Infinity }}
           />
-          <span className="text-[10px] font-mono uppercase tracking-widest text-green-400">Analysis Complete</span>
+          <span className="text-[10px] font-mono uppercase tracking-widest text-green-400">
+            Analysis Complete
+          </span>
         </div>
         <button
           onClick={onReset}
@@ -176,27 +208,42 @@ export function DigitalAnalyzerResults({ onReset }: DigitalAnalyzerResultsProps)
         {/* Score bars */}
         <div
           className="p-6 rounded-xl border space-y-5"
-          style={{ borderColor: "oklch(0.78 0.14 300 / 0.15)", background: "oklch(0.78 0.14 300 / 0.15)" }}
+          style={{
+            borderColor: "oklch(0.78 0.14 300 / 0.15)",
+            background: "oklch(0.78 0.14 300 / 0.15)",
+          }}
         >
           <h2 className="text-2xl font-bold tracking-tight mb-6">System Report</h2>
-          {SCORES.map((s, i) => <ScoreBar key={s.label} score={s} index={i} />)}
+          {SCORES.map((s, i) => (
+            <ScoreBar key={s.label} score={s} index={i} />
+          ))}
         </div>
 
         {/* Radar chart + overall score */}
         <div className="space-y-4">
           <div
             className="p-4 rounded-xl border flex flex-col items-center"
-            style={{ borderColor: "oklch(0.78 0.14 300 / 0.15)", background: "oklch(0.78 0.14 300 / 0.15)" }}
+            style={{
+              borderColor: "oklch(0.78 0.14 300 / 0.15)",
+              background: "oklch(0.78 0.14 300 / 0.15)",
+            }}
           >
-            <div className="text-[9px] font-mono uppercase tracking-widest text-accent mb-3">Presence Map</div>
+            <div className="text-[9px] font-mono uppercase tracking-widest text-accent mb-3">
+              Presence Map
+            </div>
             <RadarChart scores={radarScores} />
           </div>
 
           <div
             className="p-4 rounded-xl border text-center"
-            style={{ borderColor: "oklch(0.78 0.14 300 / 0.15)", background: "oklch(0.78 0.14 300 / 0.15)" }}
+            style={{
+              borderColor: "oklch(0.78 0.14 300 / 0.15)",
+              background: "oklch(0.78 0.14 300 / 0.15)",
+            }}
           >
-            <div className="text-[9px] font-mono uppercase tracking-widest text-subtle mb-1">Overall Score</div>
+            <div className="text-[9px] font-mono uppercase tracking-widest text-subtle mb-1">
+              Overall Score
+            </div>
             <motion.div
               className="text-5xl font-bold font-mono"
               style={{ color: "oklch(0.78 0.14 300)" }}
@@ -214,14 +261,31 @@ export function DigitalAnalyzerResults({ onReset }: DigitalAnalyzerResultsProps)
       {/* Critical insights */}
       <div
         className="p-6 rounded-xl border mb-6"
-        style={{ borderColor: "oklch(0.78 0.14 300 / 0.15)", background: "oklch(0.78 0.14 300 / 0.15)" }}
+        style={{
+          borderColor: "oklch(0.78 0.14 300 / 0.15)",
+          background: "oklch(0.78 0.14 300 / 0.15)",
+        }}
       >
-        <div className="text-[10px] font-mono uppercase tracking-widest text-accent mb-4">Critical Insights</div>
+        <div className="text-[10px] font-mono uppercase tracking-widest text-accent mb-4">
+          Critical Insights
+        </div>
         <div className="grid md:grid-cols-3 gap-4">
           {[
-            { icon: "→", text: "Your brand lacks visual memorability. Immediate identity architecture required.", urgency: "HIGH" },
-            { icon: "→", text: "Strong cultural alignment detected. Capitalize with creator economy partnerships.", urgency: "MED" },
-            { icon: "→", text: "Growth potential within creator ecosystem confirmed. Scale with AI content systems.", urgency: "OPP" },
+            {
+              icon: "→",
+              text: "Your brand lacks visual memorability. Immediate identity architecture required.",
+              urgency: "HIGH",
+            },
+            {
+              icon: "→",
+              text: "Strong cultural alignment detected. Capitalize with creator economy partnerships.",
+              urgency: "MED",
+            },
+            {
+              icon: "→",
+              text: "Growth potential within creator ecosystem confirmed. Scale with AI content systems.",
+              urgency: "OPP",
+            },
           ].map((insight, i) => (
             <motion.div
               key={i}
@@ -229,21 +293,36 @@ export function DigitalAnalyzerResults({ onReset }: DigitalAnalyzerResultsProps)
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 + i * 0.15 }}
               className="p-3 rounded-lg border space-y-2"
-              style={{ borderColor: "oklch(0.78 0.14 300 / 0.15)", background: "oklch(0.78 0.14 300 / 0.15)" }}
+              style={{
+                borderColor: "oklch(0.78 0.14 300 / 0.15)",
+                background: "oklch(0.78 0.14 300 / 0.15)",
+              }}
             >
               <div className="flex items-center justify-between">
                 <span className="text-accent font-mono">{insight.icon}</span>
                 <span
                   className="text-[8px] font-mono tracking-widest px-1.5 py-0.5 rounded"
                   style={{
-                    color: insight.urgency === "HIGH" ? "#ef4444" : insight.urgency === "MED" ? "#eab308" : "#22c55e",
-                    background: insight.urgency === "HIGH" ? "#ef444420" : insight.urgency === "MED" ? "#eab30820" : "#22c55e20",
+                    color:
+                      insight.urgency === "HIGH"
+                        ? "#ef4444"
+                        : insight.urgency === "MED"
+                          ? "#eab308"
+                          : "#22c55e",
+                    background:
+                      insight.urgency === "HIGH"
+                        ? "#ef444420"
+                        : insight.urgency === "MED"
+                          ? "#eab30820"
+                          : "#22c55e20",
                   }}
                 >
                   {insight.urgency}
                 </span>
               </div>
-              <p className="text-[11px] font-mono text-muted-foreground leading-snug">{insight.text}</p>
+              <p className="text-[11px] font-mono text-muted-foreground leading-snug">
+                {insight.text}
+              </p>
             </motion.div>
           ))}
         </div>
@@ -254,7 +333,8 @@ export function DigitalAnalyzerResults({ onReset }: DigitalAnalyzerResultsProps)
         className="p-6 rounded-xl border text-center"
         style={{
           borderColor: "oklch(0.78 0.14 300 / 0.15)",
-          background: "radial-gradient(ellipse at top, oklch(0.78 0.14 300 / 0.15), transparent 70%)",
+          background:
+            "radial-gradient(ellipse at top, oklch(0.78 0.14 300 / 0.15), transparent 70%)",
         }}
       >
         <p className="font-mono text-sm text-white mb-4">Want PINFUEL to engineer this system?</p>
@@ -279,7 +359,9 @@ interface ScanningScreenProps {
 }
 
 export function ScanningScreen({ progress, scanText }: ScanningScreenProps) {
-  const [logLines, setLogLines] = useState<string[]>(["[SYS] Initializing digital intelligence scanner..."]);
+  const [logLines, setLogLines] = useState<string[]>([
+    "[SYS] Initializing digital intelligence scanner...",
+  ]);
 
   useEffect(() => {
     const LOG_FEED = [
@@ -336,7 +418,8 @@ export function ScanningScreen({ progress, scanText }: ScanningScreenProps) {
         <motion.div
           className="absolute inset-0 rounded-full origin-center"
           style={{
-            background: "conic-gradient(from 0deg, transparent 0deg, transparent 280deg, oklch(0.78 0.14 300 / 0.15) 360deg)",
+            background:
+              "conic-gradient(from 0deg, transparent 0deg, transparent 280deg, oklch(0.78 0.14 300 / 0.15) 360deg)",
           }}
           animate={{ rotate: 360 }}
           transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
@@ -350,13 +433,18 @@ export function ScanningScreen({ progress, scanText }: ScanningScreenProps) {
           <motion.div
             key={i}
             className="absolute w-1.5 h-1.5 rounded-full"
-            style={{ ...pos, background: "oklch(0.78 0.14 300)", boxShadow: "0 0 6px oklch(0.78 0.14 300)" }}
+            style={{
+              ...pos,
+              background: "oklch(0.78 0.14 300)",
+              boxShadow: "0 0 6px oklch(0.78 0.14 300)",
+            }}
             animate={{ opacity: [0, 1, 0] }}
             transition={{ duration: 2, repeat: Infinity, delay: i * 0.6 }}
           />
         ))}
         {/* Center */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full"
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full"
           style={{ background: "oklch(0.78 0.14 300)", boxShadow: "0 0 16px oklch(0.78 0.14 300)" }}
         />
       </div>
@@ -377,10 +465,16 @@ export function ScanningScreen({ progress, scanText }: ScanningScreenProps) {
 
       {/* Progress bar */}
       <div className="w-full max-w-sm mb-2">
-        <div className="h-px rounded-full overflow-hidden" style={{ background: "oklch(0.78 0.14 300 / 0.15)" }}>
+        <div
+          className="h-px rounded-full overflow-hidden"
+          style={{ background: "oklch(0.78 0.14 300 / 0.15)" }}
+        >
           <motion.div
             className="h-full rounded-full"
-            style={{ background: "oklch(0.78 0.14 300)", boxShadow: "0 0 10px oklch(0.78 0.14 300)" }}
+            style={{
+              background: "oklch(0.78 0.14 300)",
+              boxShadow: "0 0 10px oklch(0.78 0.14 300)",
+            }}
             animate={{ width: `${progress}%` }}
           />
         </div>
@@ -393,7 +487,10 @@ export function ScanningScreen({ progress, scanText }: ScanningScreenProps) {
       {/* Terminal log */}
       <div
         className="w-full max-w-sm mt-6 p-4 rounded-lg border text-left font-mono text-[10px] space-y-1"
-        style={{ borderColor: "oklch(0.78 0.14 300 / 0.15)", background: "oklch(0.78 0.14 300 / 0.15)" }}
+        style={{
+          borderColor: "oklch(0.78 0.14 300 / 0.15)",
+          background: "oklch(0.78 0.14 300 / 0.15)",
+        }}
       >
         {logLines.map((line, i) => (
           <motion.div

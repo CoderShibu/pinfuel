@@ -1,10 +1,10 @@
 /**
  * Mock Backend Service for PINFUEL Intelligence Intake
- * 
+ *
  * Replace this implementation with actual Supabase / EmailJS logic when keys are available.
  */
 
-export async function submitServiceRequest(payload: any) {
+export async function submitServiceRequest(payload: unknown) {
   console.log("INITIALIZING SECURE UPLOAD PROTOCOL...");
   console.log("Payload:", payload);
 

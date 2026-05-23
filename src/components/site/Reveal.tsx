@@ -6,7 +6,15 @@ const variants: Variants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.4, 0, 0.2, 1] } },
 };
 
-export function Reveal({ children, className, delay = 0 }: { children?: ReactNode; className?: string; delay?: number }) {
+export function Reveal({
+  children,
+  className,
+  delay = 0,
+}: {
+  children?: ReactNode;
+  className?: string;
+  delay?: number;
+}) {
   return (
     <motion.div
       className={className}
@@ -21,7 +29,15 @@ export function Reveal({ children, className, delay = 0 }: { children?: ReactNod
   );
 }
 
-export function RevealGroup({ children, className, stagger = 0.08 }: { children?: ReactNode; className?: string; stagger?: number }) {
+export function RevealGroup({
+  children,
+  className,
+  stagger = 0.08,
+}: {
+  children?: ReactNode;
+  className?: string;
+  stagger?: number;
+}) {
   return (
     <motion.div
       className={className}
@@ -35,11 +51,22 @@ export function RevealGroup({ children, className, stagger = 0.08 }: { children?
   );
 }
 
-export function RevealItem({ children, className, delay }: { children?: ReactNode; className?: string; delay?: number }) {
+export function RevealItem({
+  children,
+  className,
+  delay,
+}: {
+  children?: ReactNode;
+  className?: string;
+  delay?: number;
+}) {
   return (
-    <motion.div className={className} variants={variants} transition={delay ? { delay } : undefined}>
+    <motion.div
+      className={className}
+      variants={variants}
+      transition={delay ? { delay } : undefined}
+    >
       {children}
     </motion.div>
   );
 }
-

@@ -8,9 +8,16 @@ export const Route = createFileRoute("/process")({
   head: () => ({
     meta: [
       { title: "Process — PINFUEL" },
-      { name: "description", content: "A five-step system: Research, Identity, Strategy, Execution, Scale. Built for results." },
+      {
+        name: "description",
+        content:
+          "A five-step system: Research, Identity, Strategy, Execution, Scale. Built for results.",
+      },
       { property: "og:title", content: "Process — PINFUEL" },
-      { property: "og:description", content: "How we engineer presence — a five-step system built for results." },
+      {
+        property: "og:description",
+        content: "How we engineer presence — a five-step system built for results.",
+      },
     ],
   }),
   component: ProcessPage,
@@ -85,7 +92,9 @@ function ProcessPage() {
           ].map(([h, p]) => (
             <Reveal key={h}>
               <div className="rounded-2xl p-8 border border-border bg-[oklch(1_0_0/0.02)] h-full">
-                <div className="text-[11px] uppercase tracking-[0.08em] text-accent font-medium mb-3">{h}</div>
+                <div className="text-[11px] uppercase tracking-[0.08em] text-accent font-medium mb-3">
+                  {h}
+                </div>
                 <p className="text-lg leading-[1.5] text-balance">{p}</p>
               </div>
             </Reveal>

@@ -26,7 +26,12 @@ function MiniBarChart({ color }: { color: string }) {
           style={{ backgroundColor: color }}
           initial={{ height: "20%" }}
           animate={{ height: [`${bar.height}%`, `${Math.random() * 60 + 20}%`, `${bar.height}%`] }}
-          transition={{ duration: 3 + Math.random() * 2, repeat: Infinity, delay: bar.delay, ease: "easeInOut" }}
+          transition={{
+            duration: 3 + Math.random() * 2,
+            repeat: Infinity,
+            delay: bar.delay,
+            ease: "easeInOut",
+          }}
         />
       ))}
     </div>
@@ -57,12 +62,8 @@ export function SystemModule({ id, title, desc, index, metrics, tags, onBook }: 
       onClick={handleToggle}
       className="relative border border-border rounded-xl overflow-hidden cursor-pointer transition-colors duration-300 group"
       style={{
-        background: expanded
-          ? "oklch(0.78 0.14 300 / 0.15)"
-          : "oklch(0.78 0.14 300 / 0.15)",
-        borderColor: expanded
-          ? "oklch(0.78 0.14 300 / 0.15)"
-          : "oklch(0.78 0.14 300 / 0.15)",
+        background: expanded ? "oklch(0.78 0.14 300 / 0.15)" : "oklch(0.78 0.14 300 / 0.15)",
+        borderColor: expanded ? "oklch(0.78 0.14 300 / 0.15)" : "oklch(0.78 0.14 300 / 0.15)",
         boxShadow: expanded ? "0 0 40px oklch(0.78 0.14 300 / 0.15)" : "none",
       }}
       whileHover={{ borderColor: "oklch(0.78 0.14 300 / 0.15)" }}
@@ -112,7 +113,14 @@ export function SystemModule({ id, title, desc, index, metrics, tags, onBook }: 
             transition={{ duration: 0.3 }}
             className="w-8 h-8 rounded-full border border-border flex items-center justify-center text-subtle group-hover:border-accent group-hover:text-accent transition-colors shrink-0"
           >
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
               <path d="M12 5v14M5 12h14" />
             </svg>
           </motion.div>
@@ -130,18 +138,31 @@ export function SystemModule({ id, title, desc, index, metrics, tags, onBook }: 
             transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
             className="overflow-hidden"
           >
-            <div className="border-t px-8 pb-8 pt-6 grid md:grid-cols-3 gap-6" style={{ borderColor: "oklch(0.78 0.14 300 / 0.15)" }}>
-
+            <div
+              className="border-t px-8 pb-8 pt-6 grid md:grid-cols-3 gap-6"
+              style={{ borderColor: "oklch(0.78 0.14 300 / 0.15)" }}
+            >
               {/* Live metrics */}
               <div className="md:col-span-2 space-y-4">
                 <div className="flex items-center gap-2 mb-4">
                   <LivePulse />
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-accent">Live Telemetry</span>
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-accent">
+                    Live Telemetry
+                  </span>
                 </div>
                 <div className="grid grid-cols-3 gap-3">
                   {metrics.map((m) => (
-                    <div key={m.label} className="p-3 rounded-lg border" style={{ borderColor: "oklch(0.78 0.14 300 / 0.15)", background: "oklch(0.78 0.14 300 / 0.15)" }}>
-                      <div className="text-[9px] uppercase tracking-widest text-subtle mb-1 font-mono">{m.label}</div>
+                    <div
+                      key={m.label}
+                      className="p-3 rounded-lg border"
+                      style={{
+                        borderColor: "oklch(0.78 0.14 300 / 0.15)",
+                        background: "oklch(0.78 0.14 300 / 0.15)",
+                      }}
+                    >
+                      <div className="text-[9px] uppercase tracking-widest text-subtle mb-1 font-mono">
+                        {m.label}
+                      </div>
                       <motion.div
                         className="text-xl font-bold font-mono"
                         style={{ color: m.color }}
@@ -158,8 +179,16 @@ export function SystemModule({ id, title, desc, index, metrics, tags, onBook }: 
               </div>
 
               {/* Status panel */}
-              <div className="p-4 rounded-lg border space-y-3" style={{ borderColor: "oklch(0.78 0.14 300 / 0.15)", background: "oklch(0.78 0.14 300 / 0.15)" }}>
-                <div className="text-[9px] uppercase tracking-widest text-accent font-mono mb-3">System Status</div>
+              <div
+                className="p-4 rounded-lg border space-y-3"
+                style={{
+                  borderColor: "oklch(0.78 0.14 300 / 0.15)",
+                  background: "oklch(0.78 0.14 300 / 0.15)",
+                }}
+              >
+                <div className="text-[9px] uppercase tracking-widest text-accent font-mono mb-3">
+                  System Status
+                </div>
                 {["Core Engine", "Data Feed", "Output Layer"].map((item, i) => (
                   <div key={item} className="flex items-center justify-between text-xs font-mono">
                     <span className="text-subtle">{item}</span>
@@ -173,9 +202,17 @@ export function SystemModule({ id, title, desc, index, metrics, tags, onBook }: 
                     </div>
                   </div>
                 ))}
-                <div className="mt-4 pt-3 border-t" style={{ borderColor: "oklch(0.78 0.14 300 / 0.15)" }}>
-                  <div className="text-[9px] uppercase font-mono text-subtle mb-1">Efficiency Index</div>
-                  <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "oklch(0.78 0.14 300 / 0.15)" }}>
+                <div
+                  className="mt-4 pt-3 border-t"
+                  style={{ borderColor: "oklch(0.78 0.14 300 / 0.15)" }}
+                >
+                  <div className="text-[9px] uppercase font-mono text-subtle mb-1">
+                    Efficiency Index
+                  </div>
+                  <div
+                    className="h-1.5 rounded-full overflow-hidden"
+                    style={{ background: "oklch(0.78 0.14 300 / 0.15)" }}
+                  >
                     <motion.div
                       className="h-full rounded-full"
                       style={{ background: "oklch(0.78 0.14 300)" }}
@@ -185,7 +222,7 @@ export function SystemModule({ id, title, desc, index, metrics, tags, onBook }: 
                     />
                   </div>
                 </div>
-                
+
                 <div className="mt-4 pt-4">
                   <button
                     onClick={(e) => {

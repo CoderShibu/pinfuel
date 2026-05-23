@@ -1,31 +1,61 @@
-const fs = require('fs');
+const fs = require("fs");
 
-const file = 'src/routes/contact.tsx';
-let content = fs.readFileSync(file, 'utf8');
+const file = "src/routes/contact.tsx";
+let content = fs.readFileSync(file, "utf8");
 
 // Global replacements for colors to support theming
-content = content.replace(/style=\{\{ color: "oklch\(0\.78 0\.14 300\)" \}\}/g, 'className="text-accent"');
-content = content.replace(/style=\{\{ background: "oklch\(0\.78 0\.14 300\)" \}\}/g, 'className="bg-accent"');
-content = content.replace(/style=\{\{ background: "oklch\(0\.78 0\.14 300 \/ 0\.15\)" \}\}/g, 'className="bg-accent/15"');
-content = content.replace(/style=\{\{ borderColor: "oklch\(0\.78 0\.14 300 \/ 0\.15\)" \}\}/g, 'className="border-accent/15"');
-content = content.replace(/style=\{\{ borderColor: "oklch\(0\.78 0\.14 300\)" \}\}/g, 'className="border-accent"');
+content = content.replace(
+  /style=\{\{ color: "oklch\(0\.78 0\.14 300\)" \}\}/g,
+  'className="text-accent"',
+);
+content = content.replace(
+  /style=\{\{ background: "oklch\(0\.78 0\.14 300\)" \}\}/g,
+  'className="bg-accent"',
+);
+content = content.replace(
+  /style=\{\{ background: "oklch\(0\.78 0\.14 300 \/ 0\.15\)" \}\}/g,
+  'className="bg-accent/15"',
+);
+content = content.replace(
+  /style=\{\{ borderColor: "oklch\(0\.78 0\.14 300 \/ 0\.15\)" \}\}/g,
+  'className="border-accent/15"',
+);
+content = content.replace(
+  /style=\{\{ borderColor: "oklch\(0\.78 0\.14 300\)" \}\}/g,
+  'className="border-accent"',
+);
 
-content = content.replace(/style=\{\{ background: "oklch\(0 0 0\)" \}\}/g, 'className="bg-background"');
+content = content.replace(
+  /style=\{\{ background: "oklch\(0 0 0\)" \}\}/g,
+  'className="bg-background"',
+);
 content = content.replace(/color: "#fff"/g, 'color: "var(--color-foreground)"');
 content = content.replace(/background: "#000"/g, 'background: "var(--color-background)"');
 content = content.replace(/color: "#000"/g, 'color: "var(--color-background)"');
 
 // Additional fixes for specific components
-content = content.replace(/className="text-\[9px\] font-mono uppercase tracking-widest block mb-2 transition-colors" style=\{\{ color: focused \? "oklch\(0\.78 0\.14 300\)" : "oklch\(0\.78 0\.14 300\)" \}\}/g, 'className={`text-[9px] font-mono uppercase tracking-widest block mb-2 transition-colors ${focused ? "text-accent" : "text-accent/70"}`}');
-content = content.replace(/className="w-full bg-transparent border-b px-0 py-3 font-mono text-lg focus:outline-none transition-colors placeholder-subtle"\s*style=\{\{ borderColor: focused \? "oklch\(0\.78 0\.14 300\)" : "oklch\(0\.78 0\.14 300 \/ 0\.15\)", color: "var\\(--color-foreground\\)" \}\}/g, 'className={`w-full bg-transparent border-b px-0 py-3 font-mono text-lg focus:outline-none transition-colors placeholder-subtle ${focused ? "border-accent" : "border-accent/15"} text-foreground`}');
+content = content.replace(
+  /className="text-\[9px\] font-mono uppercase tracking-widest block mb-2 transition-colors" style=\{\{ color: focused \? "oklch\(0\.78 0\.14 300\)" : "oklch\(0\.78 0\.14 300\)" \}\}/g,
+  'className={`text-[9px] font-mono uppercase tracking-widest block mb-2 transition-colors ${focused ? "text-accent" : "text-accent/70"}`}',
+);
+content = content.replace(
+  /className="w-full bg-transparent border-b px-0 py-3 font-mono text-lg focus:outline-none transition-colors placeholder-subtle"\s*style=\{\{ borderColor: focused \? "oklch\(0\.78 0\.14 300\)" : "oklch\(0\.78 0\.14 300 \/ 0\.15\)", color: "var\\(--color-foreground\\)" \}\}/g,
+  'className={`w-full bg-transparent border-b px-0 py-3 font-mono text-lg focus:outline-none transition-colors placeholder-subtle ${focused ? "border-accent" : "border-accent/15"} text-foreground`}',
+);
 
 // SuccessScreen MagneticButton
-content = content.replace(/style=\{\{ borderColor: "oklch\(0\.78 0\.14 300 \/ 0\.15\)", color: "oklch\(0\.78 0\.14 300\)" \}\}/g, 'className="border-accent/15 text-accent"');
-content = content.replace(/style=\{\{ background: "oklch\(0\.78 0\.14 300\)", boxShadow: "0 0 20px oklch\(0\.78 0\.14 300 \/ 0\.15\)" \}\}/g, 'className="bg-accent shadow-[0_0_20px_var(--color-accent)]"');
+content = content.replace(
+  /style=\{\{ borderColor: "oklch\(0\.78 0\.14 300 \/ 0\.15\)", color: "oklch\(0\.78 0\.14 300\)" \}\}/g,
+  'className="border-accent/15 text-accent"',
+);
+content = content.replace(
+  /style=\{\{ background: "oklch\(0\.78 0\.14 300\)", boxShadow: "0 0 20px oklch\(0\.78 0\.14 300 \/ 0\.15\)" \}\}/g,
+  'className="bg-accent shadow-[0_0_20px_var(--color-accent)]"',
+);
 
 // Fix text-black in MagneticButton to text-accent-foreground so it's visible in both modes
-content = content.replace(/text-black font-bold/g, 'text-accent-foreground font-bold');
-content = content.replace(/text-black transition-all/g, 'text-accent-foreground transition-all');
+content = content.replace(/text-black font-bold/g, "text-accent-foreground font-bold");
+content = content.replace(/text-black transition-all/g, "text-accent-foreground transition-all");
 
 const newContactPage = `
 function ContactPage() {
@@ -139,19 +169,23 @@ function ContactPage() {
 // To avoid regex errors, let's just use split
 const parts = content.split('<AnimatePresence mode="wait">');
 if (parts.length > 1) {
-    const endParts = parts[1].split('</AnimatePresence>');
-    const stepsJsx = endParts[0];
-    
-    // Replace the ContactPage function entirely
-    const beforeContactPage = content.split('function ContactPage() {')[0];
-    content = beforeContactPage + newContactPage + stepsJsx + \`
+  const endParts = parts[1].split("</AnimatePresence>");
+  const stepsJsx = endParts[0];
+
+  // Replace the ContactPage function entirely
+  const beforeContactPage = content.split("function ContactPage() {")[0];
+  content =
+    beforeContactPage +
+    newContactPage +
+    stepsJsx +
+    `
           </AnimatePresence>
         </div>
       </div>
     </div>
   );
 }
-\`;
+`;
 }
 
 fs.writeFileSync(file, content);

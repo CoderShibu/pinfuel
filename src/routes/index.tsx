@@ -7,19 +7,21 @@ import { Reveal, RevealGroup, RevealItem } from "@/components/site/Reveal";
 import { SystemModule } from "@/components/site/SystemModule";
 import { BookingModal } from "@/components/site/BookingModal";
 
-export const Route = createFileRoute("/")(
-  {
-    head: () => ({
-      meta: [
-        { title: "PINFUEL — Engineering Digital Presence" },
-        { name: "description", content: "An operating system for digital influence. AI-powered audience psychology, identity systems, and performance intelligence." },
-        { property: "og:title", content: "PINFUEL — Engineering Digital Presence" },
-        { property: "og:description", content: "An operating system for digital influence." },
-      ],
-    }),
-    component: Home,
-  }
-);
+export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "PINFUEL — Engineering Digital Presence" },
+      {
+        name: "description",
+        content:
+          "An operating system for digital influence. AI-powered audience psychology, identity systems, and performance intelligence.",
+      },
+      { property: "og:title", content: "PINFUEL — Engineering Digital Presence" },
+      { property: "og:description", content: "An operating system for digital influence." },
+    ],
+  }),
+  component: Home,
+});
 
 const TYPING_WORDS = ["Attention", "Identity", "Influence", "Culture", "Authority", "Growth"];
 
@@ -82,14 +84,16 @@ const CASE_STUDIES = [
     n: "Nova Collective",
     t: "Identity Protocol & Growth AI",
     m: "340% Audience Lift",
-    detail: "Repositioned a fashion-tech label from niche cult brand to category leader in eight months using AI audience modeling.",
+    detail:
+      "Repositioned a fashion-tech label from niche cult brand to category leader in eight months using AI audience modeling.",
     art: "radial-gradient(circle at 30% 30%, oklch(0.78 0.14 300 / 0.15), oklch(0.15 0.04 240) 50%, #050505 100%)",
   },
   {
     n: "Archetype Media",
     t: "Attention Architecture",
     m: "18× Content Output",
-    detail: "Designed an AI-augmented content stack that 18×'d output without losing authentic brand voice.",
+    detail:
+      "Designed an AI-augmented content stack that 18×'d output without losing authentic brand voice.",
     art: "conic-gradient(from 120deg at 60% 50%, #050505, #0a0a0a, oklch(0.78 0.14 300 / 0.15), #050505)",
   },
 ];
@@ -139,7 +143,11 @@ function Home() {
 
   return (
     <>
-      <BookingModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} selectedService={selectedService} />
+      <BookingModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        selectedService={selectedService}
+      />
       {/* ── HERO ────────────────────────────────────────────── */}
       <section className="relative min-h-screen pt-28 pb-20 flex items-center overflow-hidden">
         {/* Background grid + glow */}
@@ -147,13 +155,13 @@ function Home() {
         <div
           className="absolute inset-0 pointer-events-none z-0"
           style={{
-            background: "radial-gradient(ellipse 80% 60% at 50% 0%, oklch(0.78 0.14 300 / 0.15), transparent 70%)",
+            background:
+              "radial-gradient(ellipse 80% 60% at 50% 0%, oklch(0.78 0.14 300 / 0.15), transparent 70%)",
           }}
         />
 
         <div className="container-x relative z-10 w-full">
           <div className="grid lg:grid-cols-[1.25fr_1fr] gap-16 items-center">
-
             {/* Left — cinematic typography */}
             <div className="relative z-20">
               <Reveal>
@@ -165,8 +173,14 @@ function Home() {
                     backdropFilter: "blur(8px)",
                   }}
                 >
-                  <span className="w-2 h-2 rounded-full animate-pulse-dot" style={{ background: "oklch(0.78 0.14 300)" }} />
-                  <span className="text-[10px] font-mono uppercase tracking-widest" style={{ color: "oklch(0.78 0.14 300)" }}>
+                  <span
+                    className="w-2 h-2 rounded-full animate-pulse-dot"
+                    style={{ background: "oklch(0.78 0.14 300)" }}
+                  />
+                  <span
+                    className="text-[10px] font-mono uppercase tracking-widest"
+                    style={{ color: "oklch(0.78 0.14 300)" }}
+                  >
                     System Online — v3.1.0
                   </span>
                 </div>
@@ -174,10 +188,14 @@ function Home() {
 
               <Reveal delay={0.1}>
                 <h1 className="text-[clamp(48px,7.5vw,108px)] font-bold leading-[0.93] tracking-[-0.05em] text-white">
-                  Engineering<br />
+                  Engineering
+                  <br />
                   <span
                     className="text-transparent bg-clip-text"
-                    style={{ backgroundImage: "linear-gradient(90deg, oklch(0.78 0.14 300), #ffffff 60%, oklch(0.78 0.14 300 / 0.15))" }}
+                    style={{
+                      backgroundImage:
+                        "linear-gradient(90deg, oklch(0.78 0.14 300), #ffffff 60%, oklch(0.78 0.14 300 / 0.15))",
+                    }}
                   >
                     Influence.
                   </span>
@@ -196,7 +214,8 @@ function Home() {
               <Reveal delay={0.3}>
                 <p className="mt-8 text-[14px] text-subtle max-w-[460px] leading-[1.75] font-mono">
                   PINFUEL builds digital influence systems through AI, audience psychology,
-                  performance marketing, and internet culture intelligence. An OS for digital dominance.
+                  performance marketing, and internet culture intelligence. An OS for digital
+                  dominance.
                 </p>
               </Reveal>
 
@@ -245,8 +264,15 @@ function Home() {
                     { label: "AI Models Running", value: "12" },
                   ].map((s) => (
                     <div key={s.label} className="flex items-center gap-2">
-                      <span className="text-lg font-bold font-mono" style={{ color: "oklch(0.78 0.14 300)" }}>{s.value}</span>
-                      <span className="text-[10px] font-mono uppercase tracking-widest text-subtle">{s.label}</span>
+                      <span
+                        className="text-lg font-bold font-mono"
+                        style={{ color: "oklch(0.78 0.14 300)" }}
+                      >
+                        {s.value}
+                      </span>
+                      <span className="text-[10px] font-mono uppercase tracking-widest text-subtle">
+                        {s.label}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -263,12 +289,14 @@ function Home() {
         </div>
       </section>
 
-
       {/* ── CORE SYSTEMS ─────────────────────────────────────── */}
       <section className="py-32">
         <div className="container-x">
           <Reveal className="mb-16">
-            <div className="text-[10px] font-mono uppercase tracking-widest mb-4" style={{ color: "oklch(0.78 0.14 300)" }}>
+            <div
+              className="text-[10px] font-mono uppercase tracking-widest mb-4"
+              style={{ color: "oklch(0.78 0.14 300)" }}
+            >
               Core Infrastructure
             </div>
             <h2 className="text-4xl md:text-6xl font-bold tracking-tight">System Modules</h2>
@@ -309,12 +337,19 @@ function Home() {
           <Reveal className="mb-16">
             <div className="flex justify-between items-end">
               <div>
-                <div className="text-[10px] font-mono uppercase tracking-widest mb-4" style={{ color: "oklch(0.78 0.14 300)" }}>
+                <div
+                  className="text-[10px] font-mono uppercase tracking-widest mb-4"
+                  style={{ color: "oklch(0.78 0.14 300)" }}
+                >
                   Intelligence Archive
                 </div>
                 <h2 className="text-4xl md:text-6xl font-bold tracking-tight">Case Studies</h2>
               </div>
-              <MagneticButton to="/work" variant="ghost" className="font-mono text-xs hidden md:flex text-subtle hover:text-white">
+              <MagneticButton
+                to="/work"
+                variant="ghost"
+                className="font-mono text-xs hidden md:flex text-subtle hover:text-white"
+              >
                 View Archive →
               </MagneticButton>
             </div>
@@ -338,7 +373,10 @@ function Home() {
                   {/* Hover glow */}
                   <div
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                    style={{ background: "radial-gradient(circle at 50% 50%, oklch(0.78 0.14 300 / 0.15), transparent 70%)" }}
+                    style={{
+                      background:
+                        "radial-gradient(circle at 50% 50%, oklch(0.78 0.14 300 / 0.15), transparent 70%)",
+                    }}
                   />
 
                   <div className="relative z-10">
@@ -365,7 +403,14 @@ function Home() {
                         className="w-10 h-10 rounded-full border flex items-center justify-center group-hover:text-black transition-all duration-300"
                         style={{ borderColor: "oklch(0.78 0.14 300 / 0.15)" }}
                       >
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <svg
+                          width="14"
+                          height="14"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                        >
                           <path d="M5 12h14M12 5l7 7-7 7" />
                         </svg>
                       </div>
@@ -382,7 +427,10 @@ function Home() {
       <section className="py-40 text-center relative overflow-hidden">
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(ellipse at top, oklch(0.78 0.14 300 / 0.15), transparent 60%)" }}
+          style={{
+            background:
+              "radial-gradient(ellipse at top, oklch(0.78 0.14 300 / 0.15), transparent 60%)",
+          }}
         />
         <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
 
@@ -401,7 +449,9 @@ function Home() {
                 animate={{ opacity: [1, 0.3, 1] }}
                 transition={{ duration: 1.5, repeat: Infinity }}
               />
-              <span className="text-[10px] font-mono uppercase tracking-widest text-white">System Ready</span>
+              <span className="text-[10px] font-mono uppercase tracking-widest text-white">
+                System Ready
+              </span>
             </div>
           </Reveal>
           <Reveal delay={0.1}>
@@ -411,8 +461,8 @@ function Home() {
           </Reveal>
           <Reveal delay={0.2}>
             <p className="mt-6 text-base font-mono text-subtle max-w-[520px] mx-auto">
-              Enter the PINFUEL operating system. Engineering your digital presence begins
-              with a comprehensive strategy transmission.
+              Enter the PINFUEL operating system. Engineering your digital presence begins with a
+              comprehensive strategy transmission.
             </p>
           </Reveal>
           <Reveal delay={0.3}>
@@ -433,7 +483,10 @@ function Home() {
                 size="lg"
                 variant="outline"
                 className="font-mono uppercase tracking-wider text-sm w-full md:w-auto"
-                style={{ borderColor: "oklch(0.78 0.14 300 / 0.15)", color: "oklch(0.78 0.14 300)" }}
+                style={{
+                  borderColor: "oklch(0.78 0.14 300 / 0.15)",
+                  color: "oklch(0.78 0.14 300)",
+                }}
               >
                 Analyze My Presence ⎋
               </MagneticButton>

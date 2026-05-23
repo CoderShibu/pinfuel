@@ -43,7 +43,8 @@ export function MagneticButton({
   const sz = size === "lg" ? "px-7 py-[18px] text-[15px]" : "px-[22px] py-3.5 text-sm";
   const variants: Record<string, string> = {
     primary: "bg-foreground text-background hover:shadow-[0_0_40px_oklch(1_0_0/0.15)]",
-    ghost: "border border-border-strong text-foreground hover:bg-white/[0.03] hover:border-white/25",
+    ghost:
+      "border border-border-strong text-foreground hover:bg-white/[0.03] hover:border-white/25",
     outline: "border text-foreground hover:bg-white/[0.03]",
   };
 
@@ -52,7 +53,8 @@ export function MagneticButton({
       ref={ref}
       className={`${base} ${sz} ${variants[variant]}`}
       style={{
-        transition: "transform 0.25s cubic-bezier(.4,0,.2,1), background 0.25s, border-color 0.25s, box-shadow 0.25s",
+        transition:
+          "transform 0.25s cubic-bezier(.4,0,.2,1), background 0.25s, border-color 0.25s, box-shadow 0.25s",
         ...style,
       }}
     >
@@ -71,7 +73,13 @@ export function MagneticButton({
   }
   if (type || onClick) {
     return (
-      <button type={type ?? "button"} onClick={onClick} onMouseMove={onMove} onMouseLeave={onLeave} className={wrapperClass}>
+      <button
+        type={type ?? "button"}
+        onClick={onClick}
+        onMouseMove={onMove}
+        onMouseLeave={onLeave}
+        className={wrapperClass}
+      >
         {inner}
       </button>
     );
