@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
+// Trigger new build on Vercel
+// Handle CJS/ESM interop for react-tsparticles
 import { loadSlim } from "@tsparticles/slim";
 
 export function ParticleBackground() {
