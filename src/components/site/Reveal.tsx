@@ -1,10 +1,20 @@
 import { motion, type Variants } from "motion/react";
 import type { ReactNode } from "react";
 
-const variants: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.4, 0, 0.2, 1] } },
-};
+// Check synchronously if the home page has already animated in this session to prevent duplicate animation runs
+const isSessionAnimated =
+  typeof window !== "undefined" &&
+  sessionStorage.getItem("pinfuel_home_animated") === "true";
+
+const variants: Variants = isSessionAnimated
+  ? {
+      hidden: { opacity: 1, y: 0 },
+      show: { opacity: 1, y: 0, transition: { duration: 0 } },
+    }
+  : {
+      hidden: { opacity: 0, y: 24 },
+      show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.4, 0, 0.2, 1] } },
+    };
 
 export function Reveal({
   children,

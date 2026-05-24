@@ -153,17 +153,23 @@ function TypingWord() {
   );
 }
 
+const isSessionAnimated = typeof window !== "undefined" && sessionStorage.getItem("pinfuel_home_animated") === "true";
+
 function Home() {
   const [selectedService, setSelectedService] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [hasReturned, setHasReturned] = useState(false);
+  
+  // Synchronously initialize the returned status from sessionStorage to prevent mount layout shift
+  const [hasReturned] = useState(() => {
+    if (typeof window !== "undefined") {
+      return sessionStorage.getItem("pinfuel_visited_page") === "true";
+    }
+    return false;
+  });
 
   useEffect(() => {
-    // Dynamic Testimonials Activation: Check if returned from another page
-    const visited = sessionStorage.getItem("pinfuel_visited_page");
-    if (visited === "true") {
-      setHasReturned(true);
-    }
+    // Mark home page as visited and animated in this session
+    sessionStorage.setItem("pinfuel_home_animated", "true");
   }, []);
 
   const handleOpenModal = (service: string) => {
@@ -377,9 +383,9 @@ function Home() {
       <AnimatePresence>
         {hasReturned && (
           <motion.section 
-            initial={{ opacity: 0, y: 40 }}
+            initial={isSessionAnimated ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ type: "spring", stiffness: 60, delay: 0.1 }}
+            transition={isSessionAnimated ? { duration: 0 } : { type: "spring", stiffness: 60, delay: 0.1 }}
             className="py-32 relative overflow-hidden border-t border-border bg-surface/30 backdrop-blur-sm"
           >
             <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
