@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { useTheme } from "@/components/ThemeProvider";
 
 const links = [
+  { to: "/services", label: "Services" },
   { to: "/process", label: "Process" },
   { to: "/contact", label: "Contact" },
 ] as const;

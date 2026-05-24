@@ -19,6 +19,12 @@ export function Footer() {
           </div>
           <div className="flex flex-wrap items-center gap-6">
             <Link
+              to="/services"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Services
+            </Link>
+            <Link
               to="/process"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
