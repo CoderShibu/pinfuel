@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion, useScroll, useTransform } from "motion/react";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { PageHeader } from "@/components/site/PageHeader";
 import { Reveal, RevealGroup, RevealItem } from "@/components/site/Reveal";
 
@@ -35,6 +35,10 @@ function ProcessPage() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const dotX = useTransform(scrollYProgress, [0.1, 0.9], ["0%", "100%"]);
+
+  useEffect(() => {
+    sessionStorage.setItem("pinfuel_visited_page", "true");
+  }, []);
 
   return (
     <>

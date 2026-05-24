@@ -30,12 +30,7 @@ export function Footer() {
             >
               Process
             </Link>
-            <Link
-              to="/work"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Work
-            </Link>
+
             <Link
               to="/contact"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"

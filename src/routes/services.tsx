@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader } from "@/components/site/PageHeader";
 import { RevealGroup, RevealItem } from "@/components/site/Reveal";
 import { motion } from "motion/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BookingModal } from "@/components/site/BookingModal";
 
 export const Route = createFileRoute("/services")({
@@ -83,6 +83,10 @@ const feedbacks = [
 function ServicesPage() {
   const [selectedService, setSelectedService] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    sessionStorage.setItem("pinfuel_visited_page", "true");
+  }, []);
 
   const handleOpenModal = (service: string) => {
     setSelectedService(service);

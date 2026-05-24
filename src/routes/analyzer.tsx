@@ -83,6 +83,10 @@ function AnalyzerPage() {
   const [progress, setProgress] = useState(0);
   const [scanText, setScanText] = useState(SCAN_MESSAGES[0]);
 
+  useEffect(() => {
+    sessionStorage.setItem("pinfuel_visited_page", "true");
+  }, []);
+
   const handleAnalyze = (e: React.FormEvent) => {
     e.preventDefault();
     setStep("scanning");

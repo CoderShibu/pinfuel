@@ -289,6 +289,10 @@ function SuccessScreen() {
 function ContactPage() {
   const [step, setStep] = useState(1);
   const [isProcessing, setIsProcessing] = useState(false);
+
+  useEffect(() => {
+    sessionStorage.setItem("pinfuel_visited_page", "true");
+  }, []);
   const [isComplete, setIsComplete] = useState(false);
   const [selectedIndustry, setSelectedIndustry] = useState("");
   const [selectedGoals, setSelectedGoals] = useState<string[]>([]);
