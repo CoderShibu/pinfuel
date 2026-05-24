@@ -36,9 +36,7 @@ function ProcessPage() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const dotX = useTransform(scrollYProgress, [0.1, 0.9], ["0%", "100%"]);
 
-  useEffect(() => {
-    sessionStorage.setItem("pinfuel_visited_page", "true");
-  }, []);
+
 
   return (
     <>

@@ -9,17 +9,11 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ProcessRouteImport } from './routes/process'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AnalyzerRouteImport } from './routes/analyzer'
 import { Route as IndexRouteImport } from './routes/index'
 
-const ServicesRoute = ServicesRouteImport.update({
-  id: '/services',
-  path: '/services',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ProcessRoute = ProcessRouteImport.update({
   id: '/process',
   path: '/process',
@@ -46,14 +40,12 @@ export interface FileRoutesByFullPath {
   '/analyzer': typeof AnalyzerRoute
   '/contact': typeof ContactRoute
   '/process': typeof ProcessRoute
-  '/services': typeof ServicesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/analyzer': typeof AnalyzerRoute
   '/contact': typeof ContactRoute
   '/process': typeof ProcessRoute
-  '/services': typeof ServicesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -61,14 +53,13 @@ export interface FileRoutesById {
   '/analyzer': typeof AnalyzerRoute
   '/contact': typeof ContactRoute
   '/process': typeof ProcessRoute
-  '/services': typeof ServicesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/analyzer' | '/contact' | '/process' | '/services'
+  fullPaths: '/' | '/analyzer' | '/contact' | '/process'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/analyzer' | '/contact' | '/process' | '/services'
-  id: '__root__' | '/' | '/analyzer' | '/contact' | '/process' | '/services'
+  to: '/' | '/analyzer' | '/contact' | '/process'
+  id: '__root__' | '/' | '/analyzer' | '/contact' | '/process'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -76,18 +67,10 @@ export interface RootRouteChildren {
   AnalyzerRoute: typeof AnalyzerRoute
   ContactRoute: typeof ContactRoute
   ProcessRoute: typeof ProcessRoute
-  ServicesRoute: typeof ServicesRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/services': {
-      id: '/services'
-      path: '/services'
-      fullPath: '/services'
-      preLoaderRoute: typeof ServicesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/process': {
       id: '/process'
       path: '/process'
@@ -124,7 +107,6 @@ const rootRouteChildren: RootRouteChildren = {
   AnalyzerRoute: AnalyzerRoute,
   ContactRoute: ContactRoute,
   ProcessRoute: ProcessRoute,
-  ServicesRoute: ServicesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

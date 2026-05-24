@@ -28,68 +28,46 @@ const TYPING_WORDS = ["Attention", "Identity", "Influence", "Culture", "Authorit
 const SYSTEMS = [
   {
     id: "01",
-    title: "Brand Positioning",
-    desc: "We define your unique angle in the market, ensuring you aren't just another voice, but the definitive signal.",
-    tags: ["Branding", "Positioning", "Strategy"],
+    title: "Attention Engine™",
+    desc: "Retention graphs, audience psychology maps, hook architecture, and engagement pulse systems.",
+    tags: ["Behavioral", "AI Analytics", "Hook Design"],
     metrics: [
-      { label: "Market Share", value: "+44%", color: "oklch(0.78 0.14 300)" },
-      { label: "Brand Signal", value: "98%", color: "#22c55e" },
-      { label: "Clarity Index", value: "A+", color: "#3b82f6" },
+      { label: "Avg Retention", value: "+84%", color: "oklch(0.78 0.14 300)" },
+      { label: "Hook Rate", value: "97%", color: "#22c55e" },
+      { label: "Signals", value: "1.2M", color: "#3b82f6" },
     ],
   },
   {
     id: "02",
-    title: "Social Strategy",
-    desc: "Omnichannel social blueprints designed to capture attention, build authority, and drive cult-like loyalty.",
-    tags: ["Omnichannel", "Growth", "Distribution"],
+    title: "Identity OS™",
+    desc: "Branding architecture, visual consistency maps, digital personality systems, and internet positioning frameworks.",
+    tags: ["Branding", "Positioning", "Visual Systems"],
     metrics: [
-      { label: "Followers", value: "+320%", color: "#a855f7" },
-      { label: "Loyalty Rate", value: "92%", color: "#22c55e" },
-      { label: "Reach", value: "4.8M", color: "oklch(0.78 0.14 300)" },
+      { label: "Brand Score", value: "94/100", color: "#a855f7" },
+      { label: "Consistency", value: "99%", color: "#22c55e" },
+      { label: "Recall", value: "+71%", color: "oklch(0.78 0.14 300)" },
     ],
   },
   {
     id: "03",
-    title: "Attention Engineering",
-    desc: "Applying psychology and data to craft hooks, formats, and narratives that guarantee engagement.",
-    tags: ["Audience Psych", "Hook Design", "Metrics"],
+    title: "Culture Grid™",
+    desc: "Trend intelligence, culture mapping, audience immersion analytics, and internet behavior patterns.",
+    tags: ["Trend Intel", "Culture Mapping", "Behavior"],
     metrics: [
-      { label: "Hook Rate", value: "96.4%", color: "#eab308" },
-      { label: "Retention Avg", value: "88%", color: "oklch(0.78 0.14 300)" },
-      { label: "Reactions", value: "1.4M", color: "#22c55e" },
+      { label: "Trend Accuracy", value: "91%", color: "#eab308" },
+      { label: "Cultures", value: "340+", color: "oklch(0.78 0.14 300)" },
+      { label: "Cycle Time", value: "48h", color: "#22c55e" },
     ],
   },
   {
     id: "04",
-    title: "AI Growth Systems",
-    desc: "Deploying automated content pipelines and AI agents that multiply your output without losing the human touch.",
-    tags: ["ML Engine", "Automation", "Output Scaling"],
+    title: "Social AI™",
+    desc: "Predictive growth systems, AI analytics, performance optimization, and audience intelligence.",
+    tags: ["Machine Learning", "Predictive", "Growth AI"],
     metrics: [
-      { label: "Scaling Boost", value: "18×", color: "#ef4444" },
-      { label: "Automation Eff.", value: "99%", color: "#22c55e" },
-      { label: "Cost Reduced", value: "-62%", color: "oklch(0.78 0.14 300)" },
-    ],
-  },
-  {
-    id: "05",
-    title: "Community Building",
-    desc: "Transforming passive followers into active evangelists through orchestrated community infrastructure.",
-    tags: ["Orchestration", "Evangelism", "Infrastructure"],
-    metrics: [
-      { label: "Active Members", value: "12K", color: "#3b82f6" },
-      { label: "Conversion", value: "+84%", color: "#22c55e" },
-      { label: "NPS Score", value: "94/100", color: "#a855f7" },
-    ],
-  },
-  {
-    id: "06",
-    title: "Digital Identity",
-    desc: "Complete aesthetic and verbal overhaul to make your brand instantly recognizable and premium.",
-    tags: ["Verbal Identity", "Aesthetics", "Visual OS"],
-    metrics: [
-      { label: "Recall Rate", value: "+91%", color: "oklch(0.78 0.14 300)" },
-      { label: "Contrast Ratio", value: "21:1", color: "#22c55e" },
-      { label: "Aesthetic Score", value: "99/100", color: "#eab308" },
+      { label: "Prediction", value: "88%", color: "#ef4444" },
+      { label: "Output 10×", value: "18×", color: "#22c55e" },
+      { label: "Cost Eff.", value: "-62%", color: "oklch(0.78 0.14 300)" },
     ],
   },
 ];
@@ -99,24 +77,6 @@ const STATS = [
   { l: "CTR Optimization", v: "+48%", c: "#3b82f6" },
   { l: "Conversion Efficiency", v: "+71%", c: "oklch(0.78 0.14 300)" },
   { l: "Retention Lift", v: "+63%", c: "#a855f7" },
-];
-
-const TESTIMONIALS = [
-  {
-    text: "PINFUEL fundamentally shifted how we are perceived online. The attention engineering framework actually works.",
-    author: "Nova Collective",
-    metric: "+340% Audience Lift",
-  },
-  {
-    text: "18x content output with AI growth systems. It felt like cheating.",
-    author: "Archetype Media",
-    metric: "18x Output Scaling",
-  },
-  {
-    text: "Our impressions skyrocketed to 2M in 30 days. The strategy was flawless.",
-    author: "Pulse Studio",
-    metric: "2.1M Impressions",
-  },
 ];
 
 function TypingWord() {
@@ -153,24 +113,9 @@ function TypingWord() {
   );
 }
 
-const isSessionAnimated = typeof window !== "undefined" && sessionStorage.getItem("pinfuel_home_animated") === "true";
-
 function Home() {
   const [selectedService, setSelectedService] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
-  // Synchronously initialize the returned status from sessionStorage to prevent mount layout shift
-  const [hasReturned] = useState(() => {
-    if (typeof window !== "undefined") {
-      return sessionStorage.getItem("pinfuel_visited_page") === "true";
-    }
-    return false;
-  });
-
-  useEffect(() => {
-    // Mark home page as visited and animated in this session
-    sessionStorage.setItem("pinfuel_home_animated", "true");
-  }, []);
 
   const handleOpenModal = (service: string) => {
     setSelectedService(service);
@@ -323,43 +268,21 @@ function Home() {
         </div>
       </section>
 
-      {/* ── WHAT WE DO INTERACTION SECTION ──────────────────────── */}
-      <section className="py-32 relative overflow-hidden">
-        {/* Subtle grid background to isolate section */}
-        <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
-        <div className="container-x relative z-10">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
-            <Reveal>
-              <div
-                className="text-[10px] font-mono uppercase tracking-widest mb-4 inline-flex items-center gap-2 px-2.5 py-1.5 rounded bg-accent/10 border border-accent/15"
-                style={{ color: "oklch(0.78 0.14 300)" }}
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-accent animate-ping" />
-                ✦ What We Do
-              </div>
-              <h2 className="text-4xl md:text-6xl font-bold tracking-tight">System Modules</h2>
-              <p className="mt-4 font-mono text-sm text-muted-foreground max-w-xl">
-                Six disciplines, one system. We build the brand, the strategy, the systems and the audience — then we scale them.
-              </p>
-            </Reveal>
-
-            {/* Visually Obvious Interaction CTA */}
-            <Reveal delay={0.2}>
-              <motion.div 
-                className="inline-flex items-center gap-3 px-4 py-2.5 rounded-xl border border-accent/20 bg-accent/5 backdrop-blur-md cursor-default select-none shadow-[0_0_20px_oklch(0.78_0.14_300/0.05)]"
-                animate={{ boxShadow: ["0 0 15px oklch(0.78 0.14 300/0.05)", "0 0 25px oklch(0.78 0.14 300/0.18)", "0 0 15px oklch(0.78 0.14 300/0.05)"] }}
-                transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-accent" />
-                </span>
-                <span className="text-[10px] font-mono uppercase tracking-widest text-accent font-semibold">
-                  🖱️ Click Modules to Explore Live System Telemetry
-                </span>
-              </motion.div>
-            </Reveal>
-          </div>
+      {/* ── CORE SYSTEMS ─────────────────────────────────────── */}
+      <section className="py-32">
+        <div className="container-x">
+          <Reveal className="mb-16">
+            <div
+              className="text-[10px] font-mono uppercase tracking-widest mb-4"
+              style={{ color: "oklch(0.78 0.14 300)" }}
+            >
+              Core Infrastructure
+            </div>
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground">System Modules</h2>
+            <p className="mt-4 font-mono text-sm text-muted-foreground max-w-xl">
+              Click any module to expand telemetry data and inspect live operating metrics.
+            </p>
+          </Reveal>
 
           <RevealGroup className="space-y-3">
             {SYSTEMS.map((sys, idx) => (
@@ -378,82 +301,6 @@ function Home() {
           </RevealGroup>
         </div>
       </section>
-
-      {/* ── TESTIMONIAL EXPERIENCE (Dynamic Return Section) ────── */}
-      <AnimatePresence>
-        {hasReturned && (
-          <motion.section 
-            initial={isSessionAnimated ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={isSessionAnimated ? { duration: 0 } : { type: "spring", stiffness: 60, delay: 0.1 }}
-            className="py-32 relative overflow-hidden border-t border-border bg-surface/30 backdrop-blur-sm"
-          >
-            <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
-            <div
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                background: "radial-gradient(circle at 80% 20%, oklch(0.78 0.14 300 / 0.08), transparent 50%)",
-              }}
-            />
-            
-            <div className="container-x relative z-10">
-              <div className="mb-16">
-                <div 
-                  className="text-[10px] font-mono uppercase tracking-widest mb-4 inline-flex items-center gap-2"
-                  style={{ color: "oklch(0.78 0.14 300)" }}
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-                  ✦ Dynamic Telemetry Feed
-                </div>
-                <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Creator Intelligence</h2>
-                <p className="mt-4 font-mono text-sm text-muted-foreground">
-                  Secure social proof logged from active network nodes and system integrations.
-                </p>
-              </div>
-
-              <div className="grid md:grid-cols-3 gap-6">
-                {TESTIMONIALS.map((t, idx) => (
-                  <motion.div
-                    key={idx}
-                    className="p-8 rounded-2xl border border-border bg-surface-2/60 relative overflow-hidden group hover:border-accent/30 transition-all duration-300 shadow-sm"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: idx * 0.15 }}
-                  >
-                    <div className="absolute top-0 right-0 w-24 h-24 bg-accent opacity-0 group-hover:opacity-[0.05] blur-[30px] transition-opacity duration-500 pointer-events-none" />
-                    
-                    <div className="flex gap-1 mb-6 text-accent">
-                      {[1, 2, 3, 4, 5].map((star) => (
-                        <svg key={star} width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                        </svg>
-                      ))}
-                    </div>
-
-                    <p className="text-base leading-relaxed text-foreground mb-8 italic">
-                      "{t.text}"
-                    </p>
-
-                    <div className="flex items-center justify-between mt-auto">
-                      <div className="flex items-center gap-2.5">
-                        <div className="w-7 h-7 rounded-full bg-accent/10 border border-accent/25 flex items-center justify-center text-[9px] text-accent font-mono font-bold">
-                          {t.author.substring(0, 2).toUpperCase()}
-                        </div>
-                        <div className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground">
-                          {t.author}
-                        </div>
-                      </div>
-                      <div className="text-[10px] font-mono px-2 py-0.5 rounded border border-border bg-surface text-accent">
-                        {t.metric}
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </motion.section>
-        )}
-      </AnimatePresence>
 
       {/* ── FINAL CTA ─────────────────────────────────────────── */}
       <section className="py-40 text-center relative overflow-hidden border-t border-border">
