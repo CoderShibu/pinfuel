@@ -1,8 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Reveal, RevealGroup, RevealItem } from "@/components/site/Reveal";
+import { RevealGroup, RevealItem } from "@/components/site/Reveal";
 import { useState } from "react";
 import { BookingModal } from "@/components/site/BookingModal";
-import { SystemModule } from "@/components/site/SystemModule";
 import React from "react";
 
 export const Route = createFileRoute("/services")({
@@ -24,50 +23,36 @@ export const Route = createFileRoute("/services")({
   component: ServicesPage,
 });
 
-const SYSTEMS = [
+const services = [
   {
     id: "01",
-    title: "Attention Engine™",
-    desc: "Retention graphs, audience psychology maps, hook architecture, and engagement pulse systems.",
-    tags: ["Behavioral", "AI Analytics", "Hook Design"],
-    metrics: [
-      { label: "Avg Retention", value: "+84%", color: "oklch(0.78 0.14 300)" },
-      { label: "Hook Rate", value: "97%", color: "#22c55e" },
-      { label: "Signals", value: "1.2M", color: "#3b82f6" },
-    ],
+    title: "Brand Positioning",
+    desc: "We define your unique angle in the market, ensuring you aren't just another voice, but the definitive signal.",
   },
   {
     id: "02",
-    title: "Identity OS™",
-    desc: "Branding architecture, visual consistency maps, digital personality systems, and internet positioning frameworks.",
-    tags: ["Branding", "Positioning", "Visual Systems"],
-    metrics: [
-      { label: "Brand Score", value: "94/100", color: "#a855f7" },
-      { label: "Consistency", value: "99%", color: "#22c55e" },
-      { label: "Recall", value: "+71%", color: "oklch(0.78 0.14 300)" },
-    ],
+    title: "Social Strategy",
+    desc: "Omnichannel social blueprints designed to capture attention, build authority, and drive cult-like loyalty.",
   },
   {
     id: "03",
-    title: "Culture Grid™",
-    desc: "Trend intelligence, culture mapping, audience immersion analytics, and internet behavior patterns.",
-    tags: ["Trend Intel", "Culture Mapping", "Behavior"],
-    metrics: [
-      { label: "Trend Accuracy", value: "91%", color: "#eab308" },
-      { label: "Cultures", value: "340+", color: "oklch(0.78 0.14 300)" },
-      { label: "Cycle Time", value: "48h", color: "#22c55e" },
-    ],
+    title: "Attention Engineering",
+    desc: "Applying psychology and data to craft hooks, formats, and narratives that guarantee engagement.",
   },
   {
     id: "04",
-    title: "Social AI™",
-    desc: "Predictive growth systems, AI analytics, performance optimization, and audience intelligence.",
-    tags: ["Machine Learning", "Predictive", "Growth AI"],
-    metrics: [
-      { label: "Prediction", value: "88%", color: "#ef4444" },
-      { label: "Output 10×", value: "18×", color: "#22c55e" },
-      { label: "Cost Eff.", value: "-62%", color: "oklch(0.78 0.14 300)" },
-    ],
+    title: "AI Growth Systems",
+    desc: "Deploying automated content pipelines and AI agents that multiply your output without losing the human touch.",
+  },
+  {
+    id: "05",
+    title: "Community Building",
+    desc: "Transforming passive followers into active evangelists through orchestrated community infrastructure.",
+  },
+  {
+    id: "06",
+    title: "Digital Identity",
+    desc: "Complete aesthetic and verbal overhaul to make your brand instantly recognizable and premium.",
   },
 ];
 
@@ -99,31 +84,26 @@ function ServicesPage() {
         />
 
         <div className="container-x relative z-10">
-          <Reveal className="mb-16">
-            <div
-              className="text-[10px] font-mono uppercase tracking-widest mb-4"
-              style={{ color: "oklch(0.78 0.14 300)" }}
-            >
-              Core Infrastructure
-            </div>
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground">System Modules</h2>
-            <p className="mt-4 font-mono text-sm text-muted-foreground max-w-xl">
-              Click any module to expand telemetry data and inspect live operating metrics.
-            </p>
-          </Reveal>
+          <RevealGroup className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {services.map((s) => (
+              <RevealItem key={s.id}>
+                <div
+                  onClick={() => handleOpenModal(s.title)}
+                  className="group relative p-8 rounded-2xl border border-border bg-surface-2 overflow-hidden hover:border-accent/40 transition-colors duration-500 h-full flex flex-col cursor-pointer text-left shadow-sm"
+                >
+                  {/* Subtle purple glow on hover */}
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-accent opacity-0 group-hover:opacity-[0.05] blur-[50px] transition-opacity duration-700 pointer-events-none" />
 
-          <RevealGroup className="space-y-3">
-            {SYSTEMS.map((sys, idx) => (
-              <RevealItem key={sys.id}>
-                <SystemModule
-                  id={sys.id}
-                  title={sys.title}
-                  desc={sys.desc}
-                  index={idx}
-                  metrics={sys.metrics}
-                  tags={sys.tags}
-                  onBook={handleOpenModal}
-                />
+                  <div className="text-[10px] font-mono uppercase tracking-widest text-subtle mb-6">
+                    Module {s.id}
+                  </div>
+                  <h3 className="text-xl font-bold mb-4 group-hover:text-accent transition-colors text-foreground">
+                    {s.title}
+                  </h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed mt-auto font-mono">
+                    {s.desc}
+                  </p>
+                </div>
               </RevealItem>
             ))}
           </RevealGroup>
