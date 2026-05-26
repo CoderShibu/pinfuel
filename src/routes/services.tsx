@@ -1,9 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { PageHeader } from "@/components/site/PageHeader";
-import { RevealGroup, RevealItem } from "@/components/site/Reveal";
-import { motion } from "motion/react";
+import { Reveal, RevealGroup, RevealItem } from "@/components/site/Reveal";
 import { useState } from "react";
 import { BookingModal } from "@/components/site/BookingModal";
+import { SystemModule } from "@/components/site/SystemModule";
 import React from "react";
 
 export const Route = createFileRoute("/services")({
@@ -25,59 +24,50 @@ export const Route = createFileRoute("/services")({
   component: ServicesPage,
 });
 
-const services = [
+const SYSTEMS = [
   {
     id: "01",
-    title: "Brand Positioning",
-    desc: "We define your unique angle in the market, ensuring you aren't just another voice, but the definitive signal.",
+    title: "Attention Engine™",
+    desc: "Retention graphs, audience psychology maps, hook architecture, and engagement pulse systems.",
+    tags: ["Behavioral", "AI Analytics", "Hook Design"],
+    metrics: [
+      { label: "Avg Retention", value: "+84%", color: "oklch(0.78 0.14 300)" },
+      { label: "Hook Rate", value: "97%", color: "#22c55e" },
+      { label: "Signals", value: "1.2M", color: "#3b82f6" },
+    ],
   },
   {
     id: "02",
-    title: "Social Strategy",
-    desc: "Omnichannel social blueprints designed to capture attention, build authority, and drive cult-like loyalty.",
+    title: "Identity OS™",
+    desc: "Branding architecture, visual consistency maps, digital personality systems, and internet positioning frameworks.",
+    tags: ["Branding", "Positioning", "Visual Systems"],
+    metrics: [
+      { label: "Brand Score", value: "94/100", color: "#a855f7" },
+      { label: "Consistency", value: "99%", color: "#22c55e" },
+      { label: "Recall", value: "+71%", color: "oklch(0.78 0.14 300)" },
+    ],
   },
   {
     id: "03",
-    title: "Attention Engineering",
-    desc: "Applying psychology and data to craft hooks, formats, and narratives that guarantee engagement.",
+    title: "Culture Grid™",
+    desc: "Trend intelligence, culture mapping, audience immersion analytics, and internet behavior patterns.",
+    tags: ["Trend Intel", "Culture Mapping", "Behavior"],
+    metrics: [
+      { label: "Trend Accuracy", value: "91%", color: "#eab308" },
+      { label: "Cultures", value: "340+", color: "oklch(0.78 0.14 300)" },
+      { label: "Cycle Time", value: "48h", color: "#22c55e" },
+    ],
   },
   {
     id: "04",
-    title: "AI Growth Systems",
-    desc: "Deploying automated content pipelines and AI agents that multiply your output without losing the human touch.",
-  },
-  {
-    id: "05",
-    title: "Community Building",
-    desc: "Transforming passive followers into active evangelists through orchestrated community infrastructure.",
-  },
-  {
-    id: "06",
-    title: "Digital Identity",
-    desc: "Complete aesthetic and verbal overhaul to make your brand instantly recognizable and premium.",
-  },
-];
-
-const feedbacks = [
-  {
-    text: "PINFUEL fundamentally shifted how we are perceived online. The attention engineering framework actually works.",
-    author: "Nova Collective",
-  },
-  {
-    text: "18x content output with AI growth systems. It felt like cheating.",
-    author: "Archetype Media",
-  },
-  {
-    text: "Our impressions skyrocketed to 2M in 30 days. The strategy was flawless.",
-    author: "Pulse Studio",
-  },
-  {
-    text: "The digital identity they built for us became our biggest asset.",
-    author: "Zenith Labs",
-  },
-  {
-    text: "They don't just run ads. They build ecosystems. Our community engagement went through the roof.",
-    author: "Aura Tech",
+    title: "Social AI™",
+    desc: "Predictive growth systems, AI analytics, performance optimization, and audience intelligence.",
+    tags: ["Machine Learning", "Predictive", "Growth AI"],
+    metrics: [
+      { label: "Prediction", value: "88%", color: "#ef4444" },
+      { label: "Output 10×", value: "18×", color: "#22c55e" },
+      { label: "Cost Eff.", value: "-62%", color: "oklch(0.78 0.14 300)" },
+    ],
   },
 ];
 
@@ -97,89 +87,49 @@ function ServicesPage() {
         onClose={() => setIsModalOpen(false)}
         selectedService={selectedService}
       />
-      <div className="relative">
-        <PageHeader
-          eyebrow="What We Do"
-          title="Everything your brand needs to dominate online."
-          subtitle="Six disciplines, one system. We build the brand, the strategy, the systems and the audience — then we scale them."
+      <div className="relative min-h-screen pt-32 pb-24">
+        {/* Background grid + glow */}
+        <div className="absolute inset-0 grid-bg opacity-100 pointer-events-none z-0" />
+        <div
+          className="absolute inset-0 pointer-events-none z-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 80% 60% at 50% 0%, oklch(0.78 0.14 300 / 0.15), transparent 70%)",
+          }}
         />
-      </div>
-      <section className="pb-24">
-        <div className="container-x">
-          <RevealGroup className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((s) => (
-              <RevealItem key={s.id}>
-                <div
-                  onClick={() => handleOpenModal(s.title)}
-                  className="group relative p-8 rounded-2xl border border-border bg-surface-2 overflow-hidden hover:border-accent/0.4 transition-colors duration-500 h-full flex flex-col cursor-pointer text-left shadow-sm"
-                >
-                  {/* Subtle purple glow on hover */}
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-accent opacity-0 group-hover:opacity-[0.05] blur-[50px] transition-opacity duration-700 pointer-events-none" />
 
-                  <div className="text-[10px] font-mono uppercase tracking-widest text-subtle mb-6">
-                    Module {s.id}
-                  </div>
-                  <h3 className="text-xl font-bold mb-4 group-hover:text-accent transition-colors text-foreground">
-                    {s.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mt-auto font-mono">
-                    {s.desc}
-                  </p>
-                </div>
+        <div className="container-x relative z-10">
+          <Reveal className="mb-16">
+            <div
+              className="text-[10px] font-mono uppercase tracking-widest mb-4"
+              style={{ color: "oklch(0.78 0.14 300)" }}
+            >
+              Core Infrastructure
+            </div>
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground">System Modules</h2>
+            <p className="mt-4 font-mono text-sm text-muted-foreground max-w-xl">
+              Click any module to expand telemetry data and inspect live operating metrics.
+            </p>
+          </Reveal>
+
+          <RevealGroup className="space-y-3">
+            {SYSTEMS.map((sys, idx) => (
+              <RevealItem key={sys.id}>
+                <SystemModule
+                  id={sys.id}
+                  title={sys.title}
+                  desc={sys.desc}
+                  index={idx}
+                  metrics={sys.metrics}
+                  tags={sys.tags}
+                  onBook={handleOpenModal}
+                />
               </RevealItem>
             ))}
           </RevealGroup>
         </div>
-      </section>
-
-      {/* Infinite Marquee Section */}
-      <section className="py-24 border-t border-border overflow-hidden relative bg-background">
-        <div className="container-x mb-12">
-          <div className="text-[11px] font-mono uppercase tracking-widest text-subtle">
-            Client Feedback
-          </div>
-          <h2 className="text-3xl font-bold mt-2 text-foreground">The Signal</h2>
-        </div>
-
-        {/* Left/Right fading gradients for smooth entering/exiting */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-r from-background to-transparent pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-l from-background to-transparent pointer-events-none" />
-
-        <div className="flex w-full">
-          <motion.div
-            className="flex gap-6 px-3 whitespace-nowrap w-max"
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-          >
-            {[...feedbacks, ...feedbacks].map((fb, i) => (
-              <div
-                key={i}
-                className="w-[400px] sm:w-[500px] shrink-0 p-8 rounded-2xl border border-border bg-surface-2"
-              >
-                <div className="flex gap-1 mb-6 text-accent">
-                  {/* 5 Stars */}
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <svg key={star} width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                    </svg>
-                  ))}
-                </div>
-                <p className="text-lg leading-relaxed text-foreground text-wrap mb-8 font-mono">
-                  "{fb.text}"
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-accent/0.1 border border-accent/0.3 flex items-center justify-center text-[10px] text-accent font-mono">
-                    {fb.author.substring(0, 2).toUpperCase()}
-                  </div>
-                  <div className="text-xs font-mono uppercase tracking-widest text-subtle">
-                    {fb.author}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+      </div>
     </>
   );
 }
+
